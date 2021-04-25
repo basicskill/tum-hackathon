@@ -2,27 +2,35 @@ import torch
 import torchvision
 import torchvision.transforms as transforms
 import torch.optim as optim
+from torch import nn
+import numpy as np
+import pandas as pd
+import os
 
 from model import PeopleNumberPredictionModel
 from data_load import TrainDataset
 
 if __name__ == "__main__":
 
-    out_classes = 6
+    out_classes = 3
     net = PeopleNumberPredictionModel(out_classes)
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
-    ############### Load data
+    # Use 80% of data for training and 20% for validation
+    number_of_trips = 9
     data = []
     targets = []
-    ##############data = []
-    targets = []
+    for idx in range(1, number_of_trips):
+        data.append(np.loadtxt(f"../processed_data/in_trip_{idx}.txt"))
+        targets.append(np.loadtxt(f"../processed_data/out_trip_{idx}.txt"))
+    data = np.array(data)
+    targets = np.array(targets)
 
     trainloader = TrainDataset(data, targets)
 
-    for epoch in range(2):  # loop over the dataset multiple times
+    for epoch in range(10):  # loop over the dataset multiple times
 
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):

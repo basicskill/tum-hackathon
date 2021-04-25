@@ -1,3 +1,5 @@
 data/
 papers/
 data_4_ScienceHack2021/
+__pycache__/
+.ipynb_checkpoints/

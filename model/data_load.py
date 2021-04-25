@@ -9,7 +9,7 @@ import numpy as np
 
 class TrainDataset(Dataset):
     def __init__(self, data, target):
-        self.X = [torch.tensor(row).float() for row in data]
+        self.X = [torch.tensor(row.reshape((-1, 1))).float() for row in data]
         self.y = [torch.tensor(row).float() for row in target]
 
     def __len__(self):
