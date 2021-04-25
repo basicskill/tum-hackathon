@@ -11,12 +11,15 @@ this information.
 ## Codebase structure
 
 ```
-data_exploration.ipynb: Notebook in which initial data exploration was done
-process_data.ipynb: Notebook for data cleaning and filtering
+notebooks/
+    - data_exploration.ipynb: Notebook in which initial data exploration was done
+    - process_data.ipynb: Notebook for data cleaning and filtering
 model/
     - data_load.py: Torch data loader definition
     - model.py: Torch model definition
     - train.py: Script for model training
+website/
+    - bus_crowd_estimation_website.html: Basic website prototype
 ```
 
 ## Counting problem and MAC addresses
